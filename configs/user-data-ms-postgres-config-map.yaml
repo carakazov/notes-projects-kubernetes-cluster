@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-data-ms-postgres-config-map
+data:
+  POSTGRES_USER: personal_data_system_user
+  POSTGRES_PASSWORD: 1q2w3e
+  POSTGRES_DB: user_data_system

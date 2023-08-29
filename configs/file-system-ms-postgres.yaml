@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: file-system-ms-postgres-config-map
+data:
+  POSTGRES_USER: file_system_user
+  POSTGRES_PASSWORD: 1q2w3e
+  POSTGRES_DB: file_system
