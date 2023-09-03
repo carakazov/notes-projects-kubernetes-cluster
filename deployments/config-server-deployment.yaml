@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-deployment
+  namespace: notes-project
+  labels:
+    app: config-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-server-deployment
+  template:
+    metadata:
+      labels:
+        app: config-server-deployment
+    spec:
+      containers:
+        - name: config-server-deployment
+          image: vlebediantsev/config-server-final
+          ports:
+            - containerPort: 7777

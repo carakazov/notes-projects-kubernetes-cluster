@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-deployment
+  namespace: notes-project
+  labels:
+    app: kafka-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-deployment
+  template:
+    metadata:
+      labels:
+        app: kafka-deployment
+    spec:
+      containers:
+        - name: kafka-deployment
+          image: confluentinc/cp-kafka:latest
+          ports:
+            - containerPort: 9092
+          envFrom:
+            - configMapRef:
+                name: kafka-config-map

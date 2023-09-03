@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vault-config-map
+  namespace: notes-project
+data:
+  VAULT_ADDR: http://vault-service:80
+  VAULT_DEV_ROOT_TOKEN_ID: my-root-token
+  extraconfig-from-values.hcl: |
+    storage "file" {
+      path = "./mnt/vault/data"
+    }
+
+
+    disable_mlock = true
+
+    listener "tcp" {
+      address = "0.0.0.0:8200"
+      tls_disable = true
+    }
+
+    ui = true

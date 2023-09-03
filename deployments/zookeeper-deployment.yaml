@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper-deployment
+  namespace: notes-project
+  labels:
+    app: zookeeper-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zookeeper-deployment
+  template:
+    metadata:
+      labels:
+        app: zookeeper-deployment
+    spec:
+      containers:
+        - name: zookeeper-deployment
+          image: confluentinc/cp-zookeeper:latest
+          ports:
+            - containerPort: 2181
+          envFrom:
+            - configMapRef:
+                name: zookeeper-config-map

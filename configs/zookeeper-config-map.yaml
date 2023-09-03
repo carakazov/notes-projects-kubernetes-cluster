@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: zookeeper-config-map
+  namespace: notes-project
 data:
-  ZOOKEEPER_CLIENT_PORT: 2181
-  ZOOKEEPER_TICK_TIME: 2000
+  ZOOKEEPER_CLIENT_PORT: "2181"
+  ZOOKEEPER_TICK_TIME: "2000"

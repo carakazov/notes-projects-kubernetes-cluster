@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-service
+  namespace: notes-project
+  labels:
+    app: kafka-service
+spec:
+  selector:
+    app: kafka-deployment
+  ports:
+    - port: 9092
+      targetPort: 9092
+      protocol: TCP
+      name: kafka-service-port

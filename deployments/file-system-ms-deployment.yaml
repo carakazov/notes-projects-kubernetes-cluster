@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-system-ms-deployment
+  namespace: notes-project
+  labels:
+    app: file-system-ms-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-system-ms-deployment
+  template:
+    metadata:
+      labels:
+        app: file-system-ms-deployment
+    spec:
+      containers:
+        - name: file-system-ms-deployment
+          image: vlebediantsev/file-system-ms-final
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: file-system-ms-config-map
+          volumeMounts:
+            - name: data
+              mountPath: /bin
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: file-system-ms-file-system-persistent-volume-claim

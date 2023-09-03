@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-data-ms-service
+  namespace: notes-project
+  labels:
+    app: user-data-ms-service
+spec:
+  selector:
+    app: user-data-ms-deployment
+    ports:
+      - port: 80
+        targetPort: 8080
+        protocol: TCP
+        name: user-data-ms-service-port

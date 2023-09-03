@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: file-system-ms-file-system-persistent-volume-claim
+  namespace: notes-project
+spec:
+  volumeName: file-system-ms-file-system-persistent-volume
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

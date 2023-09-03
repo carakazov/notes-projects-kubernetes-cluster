@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
-metdata:
+metadata:
   name: logic-ms-postgres-config-map
+  namespace: notes-project
 data:
   POSTGRES_USER: logic_ms_user
   POSTGRES_DB: logic_ms

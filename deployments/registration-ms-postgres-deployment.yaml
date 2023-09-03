@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registration-ms-postgres-deployment
+  namespace: notes-project
+  labels:
+    app: registration-ms-postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registration-ms-postgres-deployment
+  template:
+    metadata:
+      labels:
+        app: registration-ms-postgres-deployment
+    spec:
+      containers:
+        - name: registration-ms-postgres-deployment
+          image: library/postgres
+          args: ['-c', 'config_file=/etc/postgresql/postgresql.conf']
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: registration-ms-postgres-config-map
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+              readOnly: false
+            - name: pghba
+              mountPath: /etc/postgresql/pg_hba.conf
+              readOnly: false
+              subPath: pg_hba.conf
+            - name: config
+              mountPath: /etc/postgresql/postgresql.conf
+              readOnly: false
+              subPath: postgresql.conf
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: registration-ms-postgres-persistent-volume-claim
+        - name: pghba
+          configMap:
+            name: registration-ms-postgres-config-map
+            items:
+              - key: pg_hba.conf
+                path: pg_hba.conf
+        - name: config
+          configMap:
+            name: registration-ms-postgres-config-map
+            items:
+              - key: postgresql.conf
+                path: postgresql.conf

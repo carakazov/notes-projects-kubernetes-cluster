@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-data-ms-deployment
+  namespace: notes-project
+  labels:
+    app: user-data-ms-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-data-ms-deployment
+  template:
+    metadata:
+      labels:
+        app: user-data-ms-deployment
+    spec:
+      containers:
+        - name: user-data-ms-deployment
+          image: vlebediantsev/user-data-system-final
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: user-data-ms-config-map

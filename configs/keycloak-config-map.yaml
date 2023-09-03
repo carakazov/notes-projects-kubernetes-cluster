@@ -2,9 +2,10 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: keycloak-config-map
+  namespace: notes-project
 data:
   DB_VENDOR: POSTGRES
-#  DB_ADDR: keycloak postgres deployment service here
+  DB_ADDR: keycloak-postgres-service
   DB_DATABASE: keycloak_db
   DB_USER: postgres
   DB_PASSWORD: postgres

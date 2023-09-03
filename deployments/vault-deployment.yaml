@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-deployment
+  namespace: notes-project
+  labels:
+    app: vault-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vault-deployment
+  template:
+    metadata:
+      labels:
+        app: vault-deployment
+    spec:
+      containers:
+        - name: vault-deployment
+          image: vault:1.13.3
+          args: ["vault", "server", "-config=vault/config/extraconfig-from-values.hcl"]
+          ports:
+            - containerPort: 8200
+          lifecycle:
+            postStart:
+              exec:
+                command: ["chmod", "777", "/mnt"]
+          envFrom:
+            - configMapRef:
+                name: vault-config-map
+          volumeMounts:
+            - name: data
+              mountPath: /mnt
+            - name: config
+              mountPath: /vault/config/extraconfig-from-values.hcl
+              subPath: extraconfig-from-values.hcl
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: vault-persistent-volume-claim
+        - name: config
+          configMap:
+            name: vault-config-map
+            items:
+              - key: extraconfig-from-values.hcl
+                path: extraconfig-from-values.hcl

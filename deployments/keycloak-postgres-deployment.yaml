@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-postgres-deployment
+  namespace: notes-project
+  labels:
+    app: keycloak-postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak-postgres-deployment
+  template:
+    metadata:
+      labels:
+        app: keycloak-postgres-deployment
+    spec:
+      containers:
+        - name: keycloak-postgres-deployment
+          image: library/postgres
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: keycloak-postgres-config-map
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: keycloak-postgres-persistent-volume-claim

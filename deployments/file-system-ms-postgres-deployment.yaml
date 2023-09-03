@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-system-ms-postgres-deployment
+  namespace: notes-project
+  labels:
+    app: file-system-ms-postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-system-ms-postgres-deployment
+  template:
+    metadata:
+      labels:
+        app: file-system-ms-postgres-deployment
+    spec:
+      containers:
+        - name: file-system-ms-postgres-deployment
+          image: library/postgres
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: file-system-ms-postgres-config-map
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: file-system-ms-postgres-persistent-volume-claim

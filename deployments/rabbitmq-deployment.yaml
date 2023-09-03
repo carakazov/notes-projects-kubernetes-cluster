@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-deployment
+  namespace: notes-project
+  labels:
+    app: rabbitmq-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq-deployment
+  template:
+    metadata:
+      labels:
+        app: rabbitmq-deployment
+    spec:
+      containers:
+        - name: rabbitmq-deployment
+          image: rabbitmq:3.6-management
+          ports:
+            - containerPort: 5672
+            - containerPort: 15672
+          lifecycle:
+            postStart:
+              exec:
+                command: [ "chmod", "777", "/etc/rabbitmq" ]
+          volumeMounts:
+            - name: config
+              mountPath: /etc/rabbitmq/rabbitmq.config
+              subPath: rabbitmq.config
+            - name: definitions
+              mountPath: /etc/rabbitmq/definitions.json
+              subPath: definitions.json
+      volumes:
+        - name: config
+          configMap:
+            name: rabbitmq-config-map
+            items:
+              - key: rabbitmq.config
+                path: rabbitmq.config
+        - name: definitions
+          configMap:
+            name: rabbitmq-config-map
+            items:
+              - key: definitions.json
+                path: definitions.json

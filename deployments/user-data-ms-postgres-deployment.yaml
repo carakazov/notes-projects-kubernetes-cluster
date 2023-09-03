@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-data-ms-postgres-deployment
+  namespace: notes-project
+  labels:
+    app: user-data-ms-postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-data-ms-postgres-deployment
+  template:
+    metadata:
+      labels:
+        app: user-data-ms-postgres-deployment
+    spec:
+      containers:
+        - name: user-data-ms-postgres-deployment
+          image: library/postgres
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: user-data-ms-postgres-config-map
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: user-data-ms-postgres-persistent-volume-claim
