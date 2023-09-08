@@ -13,9 +13,10 @@ data:
   DB_PORT: "80"
   DB_NAME: registration_system
   DB_USER: registration_system_user
-  DB_KAFKA_HOST: kafka-service
+  DB_KAFKA_HOST: kafka-broker-host
   MAX_ACCESS_TOKEN_VALIDITY: "10000"
   MIN_ACCESS_TOKEN_VALIDITY: "10"
   MAX_REFRESH_TOKEN_VALIDITY: "10000"
   MIN_REFRESH_TOKEN_VALIDITY: "10"
   ALLOW_ORIGIN: "*"
+  VAULT_TOKEN: hvs.qbaI1DyLXYIwdBPzUYdBYo4m

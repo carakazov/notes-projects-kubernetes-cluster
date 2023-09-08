@@ -8,8 +8,8 @@ metadata:
 spec:
   selector:
     app: user-data-ms-deployment
-    ports:
-      - port: 80
-        targetPort: 8080
-        protocol: TCP
-        name: user-data-ms-service-port
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: user-data-ms-service-port

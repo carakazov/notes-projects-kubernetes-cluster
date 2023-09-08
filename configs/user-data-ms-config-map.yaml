@@ -12,5 +12,6 @@ data:
   DB_URL: user-data-ms-postgres-service
   DB_NAME: user_data_system
   DB_USER: personal_data_system_user
-  KAFKA_HOST: kafka-service
+  KAFKA_HOST: kafka-broker-host
   CLUSTER_HOST: "some-host-change-later"
+  VAULT_TOKEN: hvs.qbaI1DyLXYIwdBPzUYdBYo4m

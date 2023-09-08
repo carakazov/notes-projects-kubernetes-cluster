@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: registration-ms-front-config-map
+  namespace: notes-project
+data:
+  REACT_APP_BACKEND_URL: http://bscnotes.hopto.org/registration
+  REACT_APP_GRANT_TYPE_KEY: grant_type
+  REACT_APP_GRANT_TYPE_VALUE: client_credentials
+  REACT_APP_CLIENT_ID_KEY: client_id
+  REACT_APP_CLIENT_SECRET_KEY: client_secret
+  HOST: bscnotes.hopto.org

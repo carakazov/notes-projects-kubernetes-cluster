@@ -15,9 +15,10 @@ spec:
       labels:
         app: kafka-deployment
     spec:
+      hostname: kafka-broker-host
       containers:
         - name: kafka-deployment
-          image: confluentinc/cp-kafka:latest
+          image: wurstmeister/kafka
           ports:
             - containerPort: 9092
           envFrom:

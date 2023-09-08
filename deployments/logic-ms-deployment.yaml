@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: registration-ms-deployment
+  name: logic-ms-deployment
   namespace: notes-project
   labels:
-    app: registration-ms-deployment
+    app: logic-ms-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: registration-ms-deployment
+      app: logic-ms-deployment
   template:
     metadata:
       labels:
-        app: registration-ms-deployment
+        app: logic-ms-deployment
     spec:
       containers:
-        - name: registration-ms-deployment
-          image: vlebediantsev/registration-ms-final
+        - name: logic-ms-deployment
+          image: vlebediantsev/logic-ms-final
           ports:
             - containerPort: 8080
             - containerPort: 5005
           envFrom:
             - configMapRef:
-                name: registration-system-ms-config-map
+                name: logic-ms-config-map

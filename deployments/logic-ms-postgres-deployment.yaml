@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logic-ms-postgres-deployment
+  namespace: notes-project
+  labels:
+    app: logic-ms-postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logic-ms-postgres-deployment
+  template:
+    metadata:
+      labels:
+        app: logic-ms-postgres-deployment
+    spec:
+      containers:
+        - name: logic-ms-postgres-deployment
+          image: library/postgres
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: logic-ms-postgres-config-map
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: logic-ms-postgres-persistent-volume-claim

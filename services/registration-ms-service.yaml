@@ -15,3 +15,8 @@ spec:
       protocol: TCP
       name: registration-ms-service-port
       nodePort: 31369
+    - port: 81
+      targetPort: 5005
+      protocol: TCP
+      name: registration-ms-service-port-debug
+      nodePort: 31345

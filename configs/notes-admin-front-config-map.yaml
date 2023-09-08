@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notes-admin-front-config-map
+  namespace: notes-project
+data:
+  HOST: bscnotes.hopto.org

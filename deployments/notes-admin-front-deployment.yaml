@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-admin-front-deployment
+  namespace: notes-project
+  labels:
+    app: notes-admin-front-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes-admin-front-deployment
+  template:
+    metadata:
+      labels:
+        app: notes-admin-front-deployment
+    spec:
+      containers:
+        - name: notes-admin-front-deployment
+          image: vlebediantsev/notes-admin-front
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: notes-admin-front-config-map

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registration-ms-front-deployment
+  namespace: notes-project
+  labels:
+    app: registration-ms-front-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registration-ms-front-deployment
+  template:
+    metadata:
+      labels:
+        app: registration-ms-front-deployment
+    spec:
+      hostname: registration-ms-front-service
+      containers:
+        - name: registration-ms-front-deployment
+          image: vlebediantsev/registration-ms-front-app-host
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: registration-ms-front-config-map

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-project-front-deployment
+  namespace: notes-project
+  labels:
+    app: notes-project-front-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes-project-front-deployment
+  template:
+    metadata:
+      labels:
+        app: notes-project-front-deployment
+    spec:
+      containers:
+        - name: notes-project-front-deployment
+          image: vlebediantsev/notes-project-front
+          ports:
+            - containerPort: 3000

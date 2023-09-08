@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: ingress
+  namespace: notes-project
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: bscnotes.hopto.org
+      http:
+        paths:
+          - path: /logic(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: logic-ms-service
+                port:
+                  number: 80
+          - path: /registration(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: registration-ms-service
+                port:
+                  number: 80
+          - path: /front/registration(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: registration-ms-front-service
+                port:
+                  number: 80
+          - path: /front/admin(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: notes-admin-front-service
+                port:
+                  number: 80
+          - path: /()(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: notes-project-front-service
+                port:
+                  number: 80
