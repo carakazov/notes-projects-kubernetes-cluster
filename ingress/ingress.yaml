@@ -40,7 +40,7 @@ spec:
                 name: notes-admin-front-service
                 port:
                   number: 80
-          - path: /()(.*)
+          - path: /notes(/|$)(.*)
             pathType: Prefix
             backend:
               service:

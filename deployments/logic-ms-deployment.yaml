@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: logic-ms-deployment
-          image: vlebediantsev/logic-ms-final
+          image: vlebediantsev/logic-ms
           ports:
             - containerPort: 8080
             - containerPort: 5005

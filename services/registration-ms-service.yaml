@@ -8,15 +8,8 @@ metadata:
 spec:
   selector:
     app: registration-ms-deployment
-  type: NodePort
   ports:
     - port: 80
       targetPort: 8080
       protocol: TCP
       name: registration-ms-service-port
-      nodePort: 31369
-    - port: 81
-      targetPort: 5005
-      protocol: TCP
-      name: registration-ms-service-port-debug
-      nodePort: 31345

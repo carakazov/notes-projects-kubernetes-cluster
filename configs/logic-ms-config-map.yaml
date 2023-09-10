@@ -24,11 +24,10 @@ data:
   KAFKA_GROUP: logic.ms.group
   FILE_SYSTEM_HOST: file-system-ms-service
   FILE_SYSTEM_PORT: "80"
-  USER_DATA_SYSTEM_HOST: user-data-system-ms-service
+  USER_DATA_SYSTEM_HOST: user-data-ms-service
   USER_DATA_SYSTEM_PORT: "80"
   KEYCLOAK_HOST: keycloak-service
   KEYCLOAK_PORT: "80"
   KEYCLOAK_REALM: file-system-realm
   ALLOW_ORIGIN: "*"
-  VAULT_TOKEN: hvs.qbaI1DyLXYIwdBPzUYdBYo4m
-  JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+  VAULT_TOKEN: hvs.RexMCDy6eT0z2uA5e8mQfQP8

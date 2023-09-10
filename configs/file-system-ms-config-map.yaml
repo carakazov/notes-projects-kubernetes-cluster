@@ -21,4 +21,4 @@ data:
   VAULT_HOST: vault-service
   VAULT_PORT: "80"
   VAULT_URL: "http://vault-service:80"
-  VAULT_TOKEN: hvs.qbaI1DyLXYIwdBPzUYdBYo4m
+  VAULT_TOKEN: hvs.RexMCDy6eT0z2uA5e8mQfQP8

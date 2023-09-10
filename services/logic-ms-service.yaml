@@ -8,15 +8,8 @@ metadata:
 spec:
   selector:
     app: logic-ms-deployment
-  type: NodePort
   ports:
     - port: 80
       targetPort: 8070
       protocol: TCP
       name: logic-ms-service-port
-      nodePort: 31340
-    - port: 81
-      targetPort: 5005
-      protocol: TCP
-      name: logic-ms-debug-port
-      nodePort: 31355

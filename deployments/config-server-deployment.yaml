@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: config-server-deployment
-          image: vlebediantsev/config-server-final
+          image: vlebediantsev/config-server-another
           ports:
             - containerPort: 7777

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: user-data-ms-deployment
-          image: vlebediantsev/user-data-system-final
+          image: vlebediantsev/user-data-ms-final-final
           ports:
             - containerPort: 8080
           envFrom:
